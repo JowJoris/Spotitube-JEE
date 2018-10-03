@@ -1,4 +1,4 @@
-package nl.han.dea.joris;
+package nl.han.dea.joris.login;
 
 public class LoginRequestDTO {
     private String user;
