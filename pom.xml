@@ -51,6 +51,11 @@
                     <tomeeClassifier>plus</tomeeClassifier>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.2</version>
+            </plugin>
         </plugins>
     </build>
     <properties>
