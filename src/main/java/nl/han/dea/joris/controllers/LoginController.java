@@ -12,8 +12,7 @@ import javax.ws.rs.core.Response;
 @Path("/login")
 public class LoginController {
 
-    @Inject
-    UserService userService;
+    private UserService userService;
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -29,6 +28,12 @@ public class LoginController {
         } else {
             return Response.status(401).build();
         }
+    }
+
+
+    @Inject
+    public void setUserService(UserService userService) {
+        this.userService = userService;
     }
 }
 

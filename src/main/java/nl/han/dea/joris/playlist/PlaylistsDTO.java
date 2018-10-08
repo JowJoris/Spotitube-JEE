@@ -1,10 +1,11 @@
 package nl.han.dea.joris.playlist;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PlaylistsDTO {
 
-    private ArrayList<PlaylistDTO> playlists = new ArrayList<>();
+    private List<PlaylistDTO> playlists = new ArrayList<>();
     private int length = 15;
     private int playlistCounter = 0;
 
@@ -18,7 +19,7 @@ public class PlaylistsDTO {
         playlists.add(playlist2DTO);
     }
 
-    public ArrayList<PlaylistDTO> getPlaylists() {
+    public List<PlaylistDTO> getPlaylists() {
         return playlists;
     }
 

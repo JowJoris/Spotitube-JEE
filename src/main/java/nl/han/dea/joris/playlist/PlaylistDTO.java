@@ -1,15 +1,15 @@
 package nl.han.dea.joris.playlist;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class PlaylistDTO {
 
     private int id;
     private String name;
     private boolean owner;
-    private ArrayList<PlaylistDTO>tracks;
+    private List<PlaylistDTO>tracks;
 
-    public PlaylistDTO(int id, String name, boolean owner, ArrayList tracks){
+    public PlaylistDTO(int id, String name, boolean owner, List tracks){
         this.id = id;
         this.name = name;
         this.owner = owner;
@@ -19,5 +19,5 @@ public class PlaylistDTO {
     public int getId() {return id;}
     public String getName() {return name;}
     public boolean isOwner() {return owner;}
-    public ArrayList<PlaylistDTO> getTracks() {return tracks;}
+    public List<PlaylistDTO> getTracks() {return tracks;}
 }
