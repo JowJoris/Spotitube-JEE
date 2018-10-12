@@ -9,4 +9,5 @@ public class UserService {
     public String generateToken(){
         return "mijnspecialetoken";
     }
+
 }
