@@ -6,7 +6,7 @@ public class MySQLDatabaseConnector {
 
     public static void main(String[] args) {
         try {
-            DriverManager.getConnection("jdbc:mysql://localhost:3306/Spotitube?user=root&password=");
+            DriverManager.getConnection("jdbc:mysql://localhost:3306/Spotitube?user=root&password=password");
         } catch (SQLException e) {
             e.printStackTrace();
         }
