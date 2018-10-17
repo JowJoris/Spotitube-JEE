@@ -20,8 +20,8 @@ public class LoginController {
     public Response login(LoginRequestDTO loginRequestDTO) {
         if (userService.authenticate(loginRequestDTO.getUser(),loginRequestDTO.getPassword())) {
             LoginResponseDTO loginResponseDTO = new LoginResponseDTO();
-            loginResponseDTO.setToken(userService.generateToken());
-            loginResponseDTO.setUser(loginRequestDTO.getUser());
+            loginResponseDTO.setToken(userService.getToken());
+            loginResponseDTO.setUser(userService.getUser());
 
 
             return Response.ok(loginResponseDTO).build();
