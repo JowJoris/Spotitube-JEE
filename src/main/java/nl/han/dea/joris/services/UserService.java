@@ -1,11 +1,10 @@
 package nl.han.dea.joris.services;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class UserService {
+
+    private MySQLDatabaseConnector connector = new MySQLDatabaseConnector();
 
     private String user;
     private String token;
@@ -15,16 +14,22 @@ public class UserService {
     public String getToken() {return token;}
 
     public boolean authenticate(String username, String password){
-        connection = MySQLDatabaseConnector.getConnection();
+        connection = connector.getConnection();
         try {
-            Statement stmt = connection.createStatement();
-            String sql = "SELECT * FROM Userdata WHERE user =" + username + "AND password =" + password;
-            ResultSet rs = stmt.executeQuery(sql);
-
-            while (rs.next()) {
-                user = rs.getString("user");
-                token = rs.getString("token");
+            PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM `userdata` WHERE user = ? AND password = ?");
+            pstmt.setString(1, username);
+            pstmt.setString(2, password);
+            ResultSet rs = pstmt.executeQuery();
+            if (!rs.next()){
+                System.out.println("Result is empty");
+                return false;
             }
+            while (rs.next()) {
+                this.user = rs.getString("user");
+                this.token = rs.getString("token");
+            }
+            pstmt.close();
+            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
