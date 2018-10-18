@@ -13,7 +13,7 @@ public class PlaylistsController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response playlists(@QueryParam("token") String token) {
 
-        if (token.equals("mijnspecialetoken")) {
+        if (token.equals("mijnsecrettoken")) {
             PlaylistsDTO playlistsDTO = new PlaylistsDTO();
             playlistsDTO.addPlaylist();
             return Response.ok(playlistsDTO).build();

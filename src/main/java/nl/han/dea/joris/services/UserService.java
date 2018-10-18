@@ -24,7 +24,7 @@ public class UserService {
                 System.out.println("Result is empty");
                 return false;
             }
-            while (rs.next()) {
+            if (rs.first()) {
                 this.user = rs.getString("user");
                 this.token = rs.getString("token");
             }
