@@ -12,7 +12,7 @@ public class PlaylistsControllerTest {
     public void tokenIsTheSame(){
         PlaylistsController playlistsController = new PlaylistsController();
 
-        Response token =  playlistsController.playlists("mijnspecialetoken");
+        Response token =  playlistsController.playlists("mijnsecrettoken");
         Assert.assertEquals(200, token.getStatus());
 
     }
