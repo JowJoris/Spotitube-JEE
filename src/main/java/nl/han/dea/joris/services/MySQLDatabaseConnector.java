@@ -34,7 +34,6 @@ public class MySQLDatabaseConnector {
         try {
             Class.forName(properties.get("driver"));
             connection = DriverManager.getConnection(properties.get("connectionstring"), properties.get("username"), properties.get("password"));
-            System.out.println("Connection Succesfull");
             return connection;
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
