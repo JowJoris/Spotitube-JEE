@@ -10,17 +10,17 @@ import java.util.Properties;
 
 public class MySQLDatabaseConnector {
     private Properties prop = new Properties();
-    private InputStream input = null;
 
     private Map<String, String> getProperties(){
+        InputStream input;
         Map<String, String> properties = new HashMap<>();
         try{
             input = new FileInputStream("C:\\Users\\Joris\\Documents\\GitHub\\Spotitube-JEE\\src\\main\\resources\\mysql.properties");
             prop.load(input);
-            properties.put("driver", prop.getProperty("driver"));
-            properties.put("connectionstring", prop.getProperty("connectionstring"));
-            properties.put("username", prop.getProperty("username"));
-            properties.put("password", prop.getProperty("password"));
+            properties.put("driver", prop.getProperty("driverPropertie"));
+            properties.put("connectionstring", prop.getProperty("connectionstringPropertie"));
+            properties.put("username", prop.getProperty("usernamePropertie"));
+            properties.put("password", prop.getProperty("passwordPropertie"));
         } catch (IOException e) {
             e.printStackTrace();
         }
