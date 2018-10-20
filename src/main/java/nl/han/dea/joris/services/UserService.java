@@ -2,9 +2,11 @@ package nl.han.dea.joris.services;
 
 import java.sql.*;
 
-public class UserService {
+public class UserService extends Service{
 
     private MySQLDatabaseConnector connector = new MySQLDatabaseConnector();
+
+    private static final String GET_USER = "SELECT * FROM `userdata` WHERE user = ? AND password = ?";
 
     private String user;
     private String token;
@@ -18,14 +20,10 @@ public class UserService {
     }
 
     public boolean authenticate(String username, String password) {
-        Connection connection = null;
-        PreparedStatement pstmt = null;
-        ResultSet rs = null;
-
         try {
             connection = connector.getConnection();
 
-            pstmt = connection.prepareStatement("SELECT * FROM `userdata` WHERE user = ? AND password = ?");
+            pstmt = connection.prepareStatement(GET_USER);
             pstmt.setString(1, username);
             pstmt.setString(2, password);
 
@@ -41,15 +39,7 @@ public class UserService {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            if (connection != null && pstmt !=null && rs != null) {
-                try {
-                    connection.close();
-                    pstmt.close();
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
+            closeConnections();
         }
         return true;
     }

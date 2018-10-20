@@ -1,6 +1,7 @@
 package nl.han.dea.joris.test.controllers;
 
 import nl.han.dea.joris.controllers.PlaylistsController;
+import nl.han.dea.joris.services.PlaylistService;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -11,8 +12,10 @@ public class PlaylistsControllerTest {
     @Test
     public void tokenIsTheSame(){
         PlaylistsController playlistsController = new PlaylistsController();
+        PlaylistService playlistService = new PlaylistService();
 
-        Response token =  playlistsController.playlists("mijnsecrettoken");
+
+        Response token =  playlistsController.getPlaylists("mijnsecrettoken");
         Assert.assertEquals(200, token.getStatus());
 
     }
@@ -21,7 +24,7 @@ public class PlaylistsControllerTest {
     public void tokenIsNotTheSame(){
         PlaylistsController playlistsController = new PlaylistsController();
 
-        Response token =  playlistsController.playlists("foutetoken");
+        Response token =  playlistsController.getPlaylists("foutetoken");
         Assert.assertEquals(403, token.getStatus());
 
     }
