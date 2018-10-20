@@ -12,8 +12,6 @@ public class PlaylistsControllerTest {
     @Test
     public void tokenIsTheSame(){
         PlaylistsController playlistsController = new PlaylistsController();
-        PlaylistService playlistService = new PlaylistService();
-
 
         Response token =  playlistsController.getPlaylists("mijnsecrettoken");
         Assert.assertEquals(200, token.getStatus());
