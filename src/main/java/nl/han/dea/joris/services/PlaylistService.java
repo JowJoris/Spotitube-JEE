@@ -43,5 +43,4 @@ public class PlaylistService extends Service{
         }
         return playlists;
     }
-
 }

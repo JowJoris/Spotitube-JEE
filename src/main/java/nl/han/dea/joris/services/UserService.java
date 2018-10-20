@@ -7,6 +7,7 @@ public class UserService extends Service{
     private MySQLDatabaseConnector connector = new MySQLDatabaseConnector();
 
     private static final String GET_USER = "SELECT * FROM `userdata` WHERE user = ? AND password = ?";
+    private static final String VERIFY_TOKEN = "SELECT * FROM `userdata` WHERE token = ?";
 
     private String user;
     private String token;
@@ -42,5 +43,24 @@ public class UserService extends Service{
             closeConnections();
         }
         return true;
+    }
+
+    public boolean verifyToken(String token) {
+        try {
+            connection = connector.getConnection();
+            pstmt = connection.prepareStatement(VERIFY_TOKEN);
+            pstmt.setString(1, token);
+
+            rs = pstmt.executeQuery();
+
+            if (rs.first()) {
+                return true;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            closeConnections();
+        }
+        return false;
     }
 }
