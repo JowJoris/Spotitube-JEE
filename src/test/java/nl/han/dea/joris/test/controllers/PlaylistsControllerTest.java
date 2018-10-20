@@ -12,12 +12,15 @@ import javax.ws.rs.core.Response;
 
 public class PlaylistsControllerTest {
 
-    private PlaylistsController playlistsController = new PlaylistsController();
-    private UserService userService = Mockito.mock(UserService.class);
 
     @Test
     public void tokenIsTheSame() {
+        PlaylistsController playlistsController = new PlaylistsController();
+        UserService userService = Mockito.mock(UserService.class);
+        PlaylistService playlistService = Mockito.mock(PlaylistService.class);
+
         playlistsController.setUserService(userService);
+        playlistsController.setPlaylistService(playlistService);
         Mockito.when(userService.verifyToken("mijnsecrettoken")).thenReturn(true);
 
         Response token = playlistsController.getPlaylists("mijnsecrettoken");
@@ -27,7 +30,12 @@ public class PlaylistsControllerTest {
 
     @Test
     public void tokenIsNotTheSame() {
+        PlaylistsController playlistsController = new PlaylistsController();
+        UserService userService = Mockito.mock(UserService.class);
+        PlaylistService playlistService = Mockito.mock(PlaylistService.class);
+
         playlistsController.setUserService(userService);
+        playlistsController.setPlaylistService(playlistService);
         Mockito.when(userService.verifyToken("foutetoken")).thenReturn(false);
 
         Response token = playlistsController.getPlaylists("foutetoken");
