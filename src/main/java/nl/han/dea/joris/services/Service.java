@@ -11,7 +11,7 @@ public class Service {
     ResultSet rs = null;
 
     protected void closeConnections(){
-        if (connection != null && pstmt != null && rs != null) {
+        if (connection != null || pstmt != null || rs != null) {
             try {
                 connection.close();
                 pstmt.close();
