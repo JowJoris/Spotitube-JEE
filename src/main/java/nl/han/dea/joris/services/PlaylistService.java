@@ -8,19 +8,19 @@ import java.util.List;
 
 public class PlaylistService {
 
-    public PlaylistsResponseDTO getPlaylists (int user_id){
+    public PlaylistsResponseDTO getPlaylists (int userID){
         PlaylistDAO playlistDAO = new PlaylistDAO();
         PlaylistsResponseDTO playlistsResponseDTO = new PlaylistsResponseDTO();
-        List<Playlist> playlists = playlistDAO.getPlaylists(user_id);
-        checkOwner(user_id, playlists);
+        List<Playlist> playlists = playlistDAO.getPlaylists(userID);
+        checkOwner(userID, playlists);
         playlistsResponseDTO.setPlaylists(playlists);
         return playlistsResponseDTO;
 
     }
 
-    private void checkOwner(int user_id, List<Playlist> playlists) {
+    private void checkOwner(int userID, List<Playlist> playlists) {
         for(Playlist p : playlists){
-            if(p.getOwnerId() == user_id){
+            if(p.getOwnerId() == userID){
                 p.setOwner(true);
             }
         }

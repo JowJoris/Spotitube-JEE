@@ -1,7 +1,6 @@
 package nl.han.dea.joris.database.dao;
 
 import nl.han.dea.joris.database.objects.Playlist;
-import nl.han.dea.joris.playlist.PlaylistDTO;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -12,10 +11,6 @@ public class PlaylistDAO extends DefaultDAO{
 
 
     private static final String GET_PLAYLISTS = "SELECT `playlistdata`.`playlist_id`, `playlistdata`.`owner_id`, `playlistdata`.`name`FROM `userplaylist` LEFT JOIN `playlistdata` ON `userplaylist`.`playlist_id` = `playlistdata`.`playlist_id` WHERE `userplaylist`.`user_id` = ?";
-    private static final String EDIT_PLAYLIST ="";
-    private static final String ADD_PLAYLIST ="";
-    private static final String DELETE_PLAYLIST="";
-
 
 
     public List<Playlist> getPlaylists(int id) {

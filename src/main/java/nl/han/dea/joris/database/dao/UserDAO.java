@@ -10,8 +10,6 @@ import java.util.logging.Level;
 
 public class UserDAO extends DefaultDAO {
 
-    private MySQLDatabaseConnector connector = new MySQLDatabaseConnector();
-
     private static final String GET_USER = "SELECT * FROM `userdata` WHERE `username` = ? AND `password` = ?";
     private static final String VERIFY_TOKEN = "SELECT `user_id` FROM `userdata` WHERE `token` = ?";
 
@@ -44,7 +42,7 @@ public class UserDAO extends DefaultDAO {
     }
 
     public int getID(String token) throws TokenException {
-        int user_id = 0;
+        int userID = 0;
         try {
             connection = connector.getConnection();
             pstmt = connection.prepareStatement(VERIFY_TOKEN);
@@ -57,13 +55,13 @@ public class UserDAO extends DefaultDAO {
             }
 
             if (rs.first()) {
-                user_id = rs.getInt("user_id");
+                userID = rs.getInt("user_id");
             }
         } catch (SQLException e) {
             LOGGER.log(Level.SEVERE, e.toString(), e);
         } finally {
             closeConnections();
         }
-        return user_id;
+        return userID;
     }
 }
