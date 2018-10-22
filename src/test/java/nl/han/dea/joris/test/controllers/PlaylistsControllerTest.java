@@ -36,17 +36,17 @@ public class PlaylistsControllerTest {
 //        Mockito.when(userService.verifyToken(Mockito.anyString())).thenThrow(TokenException.class);
 //    }
 
-    @Test
-    public void playlistCouldNotBeRetrieved () {
-        PlaylistsController playlistsController = new PlaylistsController();
-        PlaylistService playlistService = Mockito.mock(PlaylistService.class);
-
-        playlistsController.setPlaylistService(playlistService);
-        Mockito.when(playlistService.getPlaylists(Mockito.anyInt())).thenThrow(TokenException.class);
-
-        Response getPlaylists = playlistsController.getPlaylists(Mockito.anyString());
-        Assert.assertEquals(403,getPlaylists.getStatus());
-    }
+//    @Test
+//    public void playlistCouldNotBeRetrieved () {
+//        PlaylistsController playlistsController = new PlaylistsController();
+//        PlaylistService playlistService = Mockito.mock(PlaylistService.class);
+//
+//        playlistsController.setPlaylistService(playlistService);
+//        Mockito.when(playlistService.getPlaylists(Mockito.anyInt())).thenThrow(TokenException.class);
+//
+//        Response getPlaylists = playlistsController.getPlaylists(Mockito.anyString());
+//        Assert.assertEquals(403,getPlaylists.getStatus());
+//    }
 
 //    @Test
 //    public void playlistCouldBeRetrieved () {
