@@ -18,6 +18,7 @@ public class LoginController {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response login(LoginRequestDTO loginRequestDTO) {
+
         if(userService.authenticate(loginRequestDTO.getUser(),loginRequestDTO.getPassword())){
             LoginResponseDTO loginResponseDTO = new LoginResponseDTO();
             loginResponseDTO.setToken(userService.getToken());

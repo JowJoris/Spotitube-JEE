@@ -7,4 +7,7 @@ public class LoginResponseDTO {
 
     public void setUser(String user) {this.user = user;}
     public void setToken(String token) {this.token = token;}
+    public String getUser() {return user;}
+    public String getToken() {return token;}
+
 }
