@@ -1,4 +1,6 @@
-package nl.han.dea.joris.services;
+package nl.han.dea.joris.database;
+
+import nl.han.dea.joris.database.dao.DefaultDAO;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -12,7 +14,7 @@ import java.util.logging.Logger;
 
 public class MySQLDatabaseConnector {
 
-    private static final Logger LOGGER = Logger.getLogger(Service.class.getName() );
+    private static final Logger LOGGER = Logger.getLogger(DefaultDAO.class.getName() );
 
     private Properties prop = new Properties();
 

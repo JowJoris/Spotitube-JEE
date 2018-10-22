@@ -1,47 +1,28 @@
 package nl.han.dea.joris.services;
 
-import nl.han.dea.joris.playlist.PlaylistDTO;
+import nl.han.dea.joris.database.dao.PlaylistDAO;
+import nl.han.dea.joris.database.objects.Playlist;
+import nl.han.dea.joris.playlist.PlaylistsResponseDTO;
 
-import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
 
-public class PlaylistService extends Service{
+public class PlaylistService {
 
-    private MySQLDatabaseConnector connector = new MySQLDatabaseConnector();
+    public PlaylistsResponseDTO getPlaylists (int user_id){
+        PlaylistDAO playlistDAO = new PlaylistDAO();
+        PlaylistsResponseDTO playlistsResponseDTO = new PlaylistsResponseDTO();
+        List<Playlist> playlists = playlistDAO.getPlaylists(user_id);
+        checkOwner(user_id, playlists);
+        playlistsResponseDTO.setPlaylists(playlists);
+        return playlistsResponseDTO;
 
-    private int playlistID;
-    private String name;
-    private boolean owner;
-    private List<PlaylistDTO> tracks = new ArrayList<>();
+    }
 
-    private static final String GET_PLAYLISTS = "SELECT * FROM `playlistdata` WHERE token = ?";
-
-    public List<PlaylistDTO> getPlaylists(String token) {
-
-        List<PlaylistDTO> playlists = new ArrayList<>();
-
-        try {
-            connection = connector.getConnection();
-            pstmt = connection.prepareStatement(GET_PLAYLISTS);
-            pstmt.setString(1, token);
-
-
-            rs = pstmt.executeQuery();
-
-            while (rs.next()) {
-                this.playlistID = rs.getInt("playlistID");
-                this.name = rs.getString("name");
-                this.owner = rs.getBoolean("owner");
-                PlaylistDTO playlistDTO = new PlaylistDTO(playlistID, name, owner, tracks);
-                playlists.add(playlistDTO);
+    private void checkOwner(int user_id, List<Playlist> playlists) {
+        for(Playlist p : playlists){
+            if(p.getOwnerId() == user_id){
+                p.setOwner(true);
             }
-        } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, e.toString(), e);
-        } finally {
-            closeConnections();
         }
-        return playlists;
     }
 }

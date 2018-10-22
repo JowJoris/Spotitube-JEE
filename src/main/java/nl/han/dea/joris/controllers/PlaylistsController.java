@@ -1,5 +1,6 @@
 package nl.han.dea.joris.controllers;
 
+import nl.han.dea.joris.exceptions.TokenException;
 import nl.han.dea.joris.playlist.PlaylistsResponseDTO;
 import nl.han.dea.joris.services.PlaylistService;
 import nl.han.dea.joris.services.UserService;
@@ -18,28 +19,32 @@ public class PlaylistsController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getPlaylists(@QueryParam("token") String token) {
-        if (userService.verifyToken(token)) {
-                PlaylistsResponseDTO playlistsResponseDTO = new PlaylistsResponseDTO();
-                playlistsResponseDTO.setPlaylists(playlistService.getPlaylists(token));
-                return Response.ok(playlistsResponseDTO).build();
-
-        } else {
+        try {
+            PlaylistsResponseDTO playlistsResponseDTO = playlistService.getPlaylists(userService.verifyToken(token));
+            return Response.ok(playlistsResponseDTO).build();
+        } catch (TokenException e) {
             return Response.status(403).build();
         }
     }
 
+
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/{playlistID}")
+    public Response editPlaylist(@QueryParam("playlistID") int playlistID, @QueryParam("token") String token) {
+//        playlistService.
+
+        return Response.ok().build();
+    }
+
     @Inject
-    public void setUserService(UserService userService){this.userService=userService;}
-    public void setPlaylistService(PlaylistService playlistService){this.playlistService=playlistService;}
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
 
-
-
-//    @POST
-//    @Consumes(MediaType.APPLICATION_JSON)
-//    @Produces(MediaType.APPLICATION_JSON)
-//    public Response addPlaylist(@QueryParam("token") String token, PlaylistDTO playlistDTO) {
-//
-//    }
+    public void setPlaylistService(PlaylistService playlistService) {
+        this.playlistService = playlistService;
+    }
 
 }
 

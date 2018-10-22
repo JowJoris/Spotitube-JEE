@@ -1,67 +1,24 @@
 package nl.han.dea.joris.services;
 
-import java.sql.*;
-import java.util.logging.Level;
+import nl.han.dea.joris.database.dao.UserDAO;
+import nl.han.dea.joris.database.objects.User;
+import nl.han.dea.joris.exceptions.TokenException;
+import nl.han.dea.joris.exceptions.UnauthorizedException;
+import nl.han.dea.joris.login.LoginResponseDTO;
 
-public class UserService extends Service{
+public class UserService {
 
-    private MySQLDatabaseConnector connector = new MySQLDatabaseConnector();
-
-    private static final String GET_USER = "SELECT * FROM `userdata` WHERE user = ? AND password = ?";
-    private static final String VERIFY_TOKEN = "SELECT * FROM `userdata` WHERE token = ?";
-
-    private String user;
-    private String token;
-
-    public String getUser() {
-        return user;
+    public LoginResponseDTO authenticate(String username, String password) throws UnauthorizedException {
+        UserDAO userDAO = new UserDAO();
+        LoginResponseDTO loginResponseDTO = new LoginResponseDTO();
+        User user = userDAO.getUser(username, password);
+        loginResponseDTO.setUser(user.getUsername());
+        loginResponseDTO.setToken(user.getToken());
+        return loginResponseDTO;
     }
 
-    public String getToken() {
-        return token;
-    }
-
-    public boolean authenticate(String username, String password) {
-        try {
-            connection = connector.getConnection();
-
-            pstmt = connection.prepareStatement(GET_USER);
-            pstmt.setString(1, username);
-            pstmt.setString(2, password);
-
-            rs = pstmt.executeQuery();
-
-            if (!rs.first()) {
-                return false;
-            }
-            if (rs.first()) {
-                this.user = rs.getString("user");
-                this.token = rs.getString("token");
-            }
-        } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, e.toString(), e);
-        } finally {
-            closeConnections();
-        }
-        return true;
-    }
-
-    public boolean verifyToken(String token) {
-        try {
-            connection = connector.getConnection();
-            pstmt = connection.prepareStatement(VERIFY_TOKEN);
-            pstmt.setString(1, token);
-
-            rs = pstmt.executeQuery();
-
-            if (rs.first()) {
-                return true;
-            }
-        } catch (SQLException e) {
-            LOGGER.log(Level.SEVERE, e.toString(), e);
-        } finally {
-            closeConnections();
-        }
-        return false;
+    public int verifyToken(String token) throws TokenException {
+        UserDAO userDAO = new UserDAO();
+        return userDAO.getID(token);
     }
 }
