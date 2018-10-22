@@ -4,8 +4,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Service {
+
+    protected static final Logger LOGGER = Logger.getLogger(Service.class.getName() );
+
     Connection connection = null;
     PreparedStatement pstmt = null;
     ResultSet rs = null;
@@ -16,7 +21,7 @@ public class Service {
                 pstmt.close();
                 rs.close();
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.log(Level.SEVERE, e.toString(), e);
             }
     }
 }

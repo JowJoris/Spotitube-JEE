@@ -7,8 +7,13 @@ import java.sql.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class MySQLDatabaseConnector {
+
+    private static final Logger LOGGER = Logger.getLogger(Service.class.getName() );
+
     private Properties prop = new Properties();
 
     private Map<String, String> getProperties(){
@@ -22,7 +27,7 @@ public class MySQLDatabaseConnector {
             properties.put("username", prop.getProperty("usernamePropertie"));
             properties.put("password", prop.getProperty("passwordPropertie"));
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE, e.toString(), e);
         }
         return properties;
 
@@ -30,13 +35,13 @@ public class MySQLDatabaseConnector {
 
     public Connection getConnection(){
         Map<String, String> properties = getProperties();
-        Connection connection = null;
+        Connection connection;
         try {
             Class.forName(properties.get("driver"));
             connection = DriverManager.getConnection(properties.get("connectionstring"), properties.get("username"), properties.get("password"));
             return connection;
         } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE, e.toString(), e);
         }
         return null;
     }

@@ -1,6 +1,7 @@
 package nl.han.dea.joris.services;
 
 import java.sql.*;
+import java.util.logging.Level;
 
 public class UserService extends Service{
 
@@ -38,7 +39,7 @@ public class UserService extends Service{
                 this.token = rs.getString("token");
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE, e.toString(), e);
         } finally {
             closeConnections();
         }
@@ -57,7 +58,7 @@ public class UserService extends Service{
                 return true;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE, e.toString(), e);
         } finally {
             closeConnections();
         }
