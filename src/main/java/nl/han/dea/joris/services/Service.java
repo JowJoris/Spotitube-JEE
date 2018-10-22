@@ -11,7 +11,6 @@ public class Service {
     ResultSet rs = null;
 
     protected void closeConnections(){
-        if (connection != null || pstmt != null || rs != null) {
             try {
                 connection.close();
                 pstmt.close();
@@ -19,8 +18,5 @@ public class Service {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        }
     }
-
-
 }
