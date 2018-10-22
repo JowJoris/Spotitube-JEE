@@ -1,6 +1,5 @@
 package nl.han.dea.joris.database.dao;
 
-import nl.han.dea.joris.database.MySQLDatabaseConnector;
 import nl.han.dea.joris.database.objects.User;
 import nl.han.dea.joris.exceptions.TokenException;
 import nl.han.dea.joris.exceptions.UnauthorizedException;

@@ -20,6 +20,12 @@ public class LoginControllerTest {
         LoginResponseDTO loginResponseDTO = new LoginResponseDTO();
         UserService userService = Mockito.mock(UserService.class);
 
+        loginRequestDTO.setUser("meron");
+        loginRequestDTO.setPassword("test");
+
+        loginResponseDTO.setUser("meron");
+        loginResponseDTO.setToken("mijnsecrettoken");
+
         loginController.setUserService(userService);
         Mockito.when(userService.authenticate(Mockito.anyString(),Mockito.anyString())).thenReturn(loginResponseDTO);
 
