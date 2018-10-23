@@ -21,6 +21,14 @@ public class PlaylistService {
 
     }
 
+    public PlaylistsResponseDTO addPlaylist (int userID, String name){
+        PlaylistDAO playlistDAO = new PlaylistDAO();
+        playlistDAO.addPlaylist(userID,name);
+        int playlistID = playlistDAO.getPlaylistID(name);
+        playlistDAO.updateUserPlaylist(playlistID, userID);
+        return getPlaylists(userID);
+    }
+
     private void checkOwner(int userID, List<Playlist> playlists) {
         for(Playlist p : playlists){
             if(p.getOwnerId() == userID){
