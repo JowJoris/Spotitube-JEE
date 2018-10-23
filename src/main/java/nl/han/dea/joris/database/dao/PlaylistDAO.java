@@ -16,12 +16,12 @@ public class PlaylistDAO extends DefaultDAO{
     public List<Playlist> getPlaylists(int id) {
 
         List<Playlist> playlists = new ArrayList<>();
+        TrackDAO trackDAO = new TrackDAO();
 
         try {
             connection = connector.getConnection();
             pstmt = connection.prepareStatement(GET_PLAYLISTS);
             pstmt.setInt(1, id);
-
 
             rs = pstmt.executeQuery();
 
@@ -30,6 +30,7 @@ public class PlaylistDAO extends DefaultDAO{
                 playlist.setId(rs.getInt("playlist_id"));
                 playlist.setName(rs.getString("name"));
                 playlist.setOwnerId(rs.getInt("owner_id"));
+                playlist.setTracks(trackDAO.getTracks(playlist.getId()));
                 playlists.add(playlist);
             }
         } catch (SQLException e) {

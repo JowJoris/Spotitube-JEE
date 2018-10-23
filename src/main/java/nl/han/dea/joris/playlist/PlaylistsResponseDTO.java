@@ -8,7 +8,7 @@ import java.util.List;
 public class PlaylistsResponseDTO {
 
     private List<Playlist> playlists = new ArrayList<>();
-    private int length = 15;
+    private int length;
 
     public void setPlaylists(List<Playlist> playlists) {this.playlists = playlists;}
     public List<Playlist> getPlaylists() {return playlists;}

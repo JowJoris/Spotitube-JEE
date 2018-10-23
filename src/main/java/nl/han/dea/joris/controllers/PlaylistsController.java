@@ -1,5 +1,6 @@
 package nl.han.dea.joris.controllers;
 
+import nl.han.dea.joris.database.dao.TrackDAO;
 import nl.han.dea.joris.exceptions.TokenException;
 import nl.han.dea.joris.playlist.PlaylistsResponseDTO;
 import nl.han.dea.joris.services.PlaylistService;
@@ -25,16 +26,6 @@ public class PlaylistsController {
         } catch (TokenException e) {
             return Response.status(403).build();
         }
-    }
-
-
-    @PUT
-    @Produces(MediaType.APPLICATION_JSON)
-    @Path("/{playlistID}")
-    public Response editPlaylist(@QueryParam("playlistID") int playlistID, @QueryParam("token") String token) {
-//        playlistService.
-
-        return Response.ok().build();
     }
 
     @Inject

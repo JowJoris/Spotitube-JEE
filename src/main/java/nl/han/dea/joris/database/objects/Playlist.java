@@ -1,11 +1,15 @@
 package nl.han.dea.joris.database.objects;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Playlist {
 
     private int id;
     private String name;
     private int ownerId;
     private boolean owner = false;
+    private List<Track> tracks;
 
     public boolean isOwner() {
         return owner;
@@ -38,4 +42,8 @@ public class Playlist {
     public void setOwnerId(int ownerId) {
         this.ownerId = ownerId;
     }
+
+    public List<Track> getTracks() {return tracks;}
+
+    public void setTracks(List<Track> tracks) {this.tracks = tracks;}
 }
