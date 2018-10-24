@@ -1,6 +1,5 @@
 package nl.han.dea.joris.database.objects;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Playlist {

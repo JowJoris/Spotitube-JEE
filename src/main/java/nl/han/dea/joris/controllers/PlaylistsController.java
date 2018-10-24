@@ -1,6 +1,5 @@
 package nl.han.dea.joris.controllers;
 
-import nl.han.dea.joris.database.dao.TrackDAO;
 import nl.han.dea.joris.exceptions.TokenException;
 import nl.han.dea.joris.playlist.PlaylistRequestDTO;
 import nl.han.dea.joris.playlist.PlaylistsResponseDTO;
