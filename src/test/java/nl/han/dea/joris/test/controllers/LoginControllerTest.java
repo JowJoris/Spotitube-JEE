@@ -53,7 +53,7 @@ public class LoginControllerTest {
     @Test
     public void loginCredentialsareNotOkTest() throws UnauthorizedException {
 
-        Mockito.when(userService.authenticate(Mockito.anyString(),Mockito.anyString())).thenThrow(UnauthorizedException.class);
+        Mockito.when(userService.authenticate(Mockito.anyString(), Mockito.anyString())).thenThrow(UnauthorizedException.class);
 
         Response response = loginController.login(loginRequestDTO);
         Assert.assertEquals(Response.Status.UNAUTHORIZED.getStatusCode(), response.getStatus());

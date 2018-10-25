@@ -2,7 +2,6 @@ package nl.han.dea.joris.test.controllers;
 
 import nl.han.dea.joris.controllers.PlaylistsController;
 import nl.han.dea.joris.exceptions.TokenException;
-import nl.han.dea.joris.exceptions.UnauthorizedException;
 import nl.han.dea.joris.playlist.PlaylistRequestDTO;
 import nl.han.dea.joris.playlist.PlaylistsResponseDTO;
 import nl.han.dea.joris.services.PlaylistService;
@@ -13,7 +12,6 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import javax.ws.rs.core.Response;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,6 +79,32 @@ public class PlaylistsControllerTest {
         Mockito.when(playlistService.getPlaylists(USERID)).thenReturn(playlistsResponseDTO);
 
         Response response = playlistsController.getPlaylists(TOKEN);
+        Assert.assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
+    }
+
+    @Test
+    public void playlistCouldBeAdded () {
+
+        Mockito.when(playlistService.addPlaylist(USERID, PLAYLISTNAME)).thenReturn(playlistsResponseDTO);
+
+        Response response = playlistsController.getPlaylists(TOKEN);
+        Assert.assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
+
+    }
+
+    @Test
+    public void playlistCouldBeEdited (){
+        Mockito.when(playlistService.editPlaylist(PLAYLISTNAME, PLAYLISTID, USERID)).thenReturn(playlistsResponseDTO);
+
+        Response response = playlistsController.editPlaylist(playlistRequestDTO, PLAYLISTID, TOKEN);
+        Assert.assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
+    }
+
+    @Test
+    public void playlistCouldBeDeleted() {
+        Mockito.when(playlistService.deletePlaylist(PLAYLISTID, USERID)).thenReturn(playlistsResponseDTO);
+
+        Response response = playlistsController.deletePlaylist(PLAYLISTID, TOKEN);
         Assert.assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
     }
 }
