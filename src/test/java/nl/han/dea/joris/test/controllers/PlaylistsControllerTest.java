@@ -54,8 +54,6 @@ public class PlaylistsControllerTest {
 
     }
 
-
-
     @Test
     public void tokenIsTheSame() throws TokenException {
 
@@ -83,6 +81,15 @@ public class PlaylistsControllerTest {
     }
 
     @Test
+    public void playlistCouldNotBeRetrieved() {
+
+        Mockito.when(playlistService.getPlaylists(Mockito.anyInt())).thenThrow(TokenException.class);
+
+        Response response = playlistsController.getPlaylists(TOKEN);
+        Assert.assertEquals(Response.Status.FORBIDDEN.getStatusCode(), response.getStatus());
+    }
+
+    @Test
     public void playlistCouldBeAdded () {
 
         Mockito.when(playlistService.addPlaylist(USERID, PLAYLISTNAME)).thenReturn(playlistsResponseDTO);
@@ -90,6 +97,14 @@ public class PlaylistsControllerTest {
         Response response = playlistsController.addPlaylist(TOKEN, playlistRequestDTO);
         Assert.assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
 
+    }
+
+    @Test
+    public void playlistCouldNotBeAdded(){
+        Mockito.when(playlistService.addPlaylist(Mockito.anyInt(), Mockito.anyString())).thenThrow(TokenException.class);
+
+        Response response = playlistsController.addPlaylist(TOKEN, playlistRequestDTO);
+        Assert.assertEquals(Response.Status.FORBIDDEN.getStatusCode(), response.getStatus());
     }
 
     @Test
@@ -101,6 +116,14 @@ public class PlaylistsControllerTest {
     }
 
     @Test
+    public void playlistCouldNotBeEditied() {
+        Mockito.when(playlistService.editPlaylist(Mockito.anyString(), Mockito.anyInt(), Mockito.anyInt())).thenThrow(TokenException.class);
+
+        Response response = playlistsController.editPlaylist(playlistRequestDTO, PLAYLISTID, TOKEN);
+        Assert.assertEquals(Response.Status.FORBIDDEN.getStatusCode(), response.getStatus());
+    }
+
+    @Test
     public void playlistCouldBeDeleted() {
         Mockito.when(playlistService.deletePlaylist(PLAYLISTID, USERID)).thenReturn(playlistsResponseDTO);
 
@@ -109,9 +132,11 @@ public class PlaylistsControllerTest {
     }
 
     @Test
-    public void canCheckOwner() {
+    public void playlistCouldNotBeDeleted() {
+        Mockito.when(playlistService.deletePlaylist(Mockito.anyInt(), Mockito.anyInt())).thenThrow(TokenException.class);
 
+        Response response = playlistsController.deletePlaylist(PLAYLISTID, TOKEN);
 
+        Assert.assertEquals(Response.Status.FORBIDDEN.getStatusCode(), response.getStatus());
     }
-
-}
+ }
