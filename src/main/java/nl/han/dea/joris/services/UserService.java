@@ -11,7 +11,9 @@ public class UserService {
     public LoginResponseDTO authenticate(String username, String password) throws UnauthorizedException {
         UserDAO userDAO = new UserDAO();
         LoginResponseDTO loginResponseDTO = new LoginResponseDTO();
+
         User user = userDAO.getUser(username, password);
+
         loginResponseDTO.setUser(user.getUsername());
         loginResponseDTO.setToken(user.getToken());
         return loginResponseDTO;

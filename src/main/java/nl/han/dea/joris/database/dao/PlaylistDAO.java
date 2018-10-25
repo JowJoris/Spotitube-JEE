@@ -1,7 +1,6 @@
 package nl.han.dea.joris.database.dao;
 
 import nl.han.dea.joris.database.objects.Playlist;
-import nl.han.dea.joris.database.objects.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -87,13 +86,12 @@ public class PlaylistDAO extends DefaultDAO {
     public void editUserPlaylist(UserPlaylistType type, int playlistID, int userID){
         try {
             connection = connector.getConnection();
-            switch(type){
-                case ADD:
-                    pstmt = connection.prepareStatement(ADD_TO_USERPLAYLIST);
-                    break;
-                case DELETE:
-                    pstmt = connection.prepareStatement(DELETE_FROM_USERPLAYLIST);
-                    break;
+            if (type.equals(UserPlaylistType.ADD)) {
+                pstmt = connection.prepareStatement(ADD_TO_USERPLAYLIST);
+
+            } else if (type.equals(UserPlaylistType.DELETE)) {
+                pstmt = connection.prepareStatement(DELETE_FROM_USERPLAYLIST);
+
             }
 
             pstmt.setInt(1, playlistID);

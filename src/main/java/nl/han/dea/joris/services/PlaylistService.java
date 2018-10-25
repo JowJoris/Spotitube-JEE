@@ -12,7 +12,6 @@ public class PlaylistService {
     private PlaylistDAO playlistDAO = new PlaylistDAO();
 
     public PlaylistsResponseDTO getPlaylists(int userID) {
-        PlaylistDAO playlistDAO = new PlaylistDAO();
         PlaylistsResponseDTO playlistsResponseDTO = new PlaylistsResponseDTO();
 
         List<Playlist> playlists = playlistDAO.getPlaylists(userID);
