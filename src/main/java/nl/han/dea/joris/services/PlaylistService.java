@@ -37,7 +37,7 @@ public class PlaylistService {
         }
     }
 
-    private int getLength(List<Playlist> playlists) {
+    public int getLength(List<Playlist> playlists) {
         int length = 0;
         for (Playlist p : playlists) {
             for (Track t : p.getTracks()) {

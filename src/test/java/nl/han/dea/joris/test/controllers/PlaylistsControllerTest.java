@@ -139,4 +139,15 @@ public class PlaylistsControllerTest {
 
         Assert.assertEquals(Response.Status.FORBIDDEN.getStatusCode(), response.getStatus());
     }
+
+    @Test
+    public void canGetLength(){
+
+        Mockito.when(playlistService.getLength(PLAYLISTS)).thenReturn(LENGTH);
+
+        int length = playlistService.getLength(PLAYLISTS);
+
+        Assert.assertEquals(LENGTH, length);
+
+    }
  }
