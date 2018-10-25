@@ -1,6 +1,7 @@
 package nl.han.dea.joris.test.controllers;
 
 import nl.han.dea.joris.controllers.PlaylistTracksController;
+import nl.han.dea.joris.exceptions.TokenException;
 import nl.han.dea.joris.services.TrackService;
 import nl.han.dea.joris.services.UserService;
 import nl.han.dea.joris.track.PlaylistTracksResponseDTO;
@@ -27,7 +28,7 @@ public class PlaylistTracksControllerTest {
     private static final List TRACKS = new ArrayList();
 
     @Before
-    public void setup(){
+    public void setup() {
 
         playlistTracksController = new PlaylistTracksController();
         playlistTracksController.setUserService(userService);
@@ -40,7 +41,7 @@ public class PlaylistTracksControllerTest {
 
 
     @Test
-    public void tracksCoudlBeRetrieved () {
+    public void tracksCoudlBeRetrieved() {
 
         Mockito.when(trackService.getTracks(PLAYLISTID)).thenReturn(playlistTracksResponseDTO);
 

@@ -107,4 +107,11 @@ public class PlaylistsControllerTest {
         Response response = playlistsController.deletePlaylist(PLAYLISTID, TOKEN);
         Assert.assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
     }
+
+    @Test
+    public void canCheckOwner() {
+
+
+    }
+
 }
