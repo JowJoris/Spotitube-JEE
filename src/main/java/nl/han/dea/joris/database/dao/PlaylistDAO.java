@@ -1,6 +1,7 @@
 package nl.han.dea.joris.database.dao;
 
 import nl.han.dea.joris.database.objects.Playlist;
+import nl.han.dea.joris.database.objects.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -13,7 +14,10 @@ public class PlaylistDAO extends DefaultDAO {
     private static final String GET_PLAYLISTS = "SELECT `playlistdata`.`playlist_id`, `playlistdata`.`owner_id`, `playlistdata`.`name`FROM `userplaylist` LEFT JOIN `playlistdata` ON `userplaylist`.`playlist_id` = `playlistdata`.`playlist_id` WHERE `userplaylist`.`user_id` = ?";
     private static final String ADD_PLAYLIST = "INSERT INTO `playlistdata` (`owner_id`, `name`) VALUES (?, ?)";
     private static final String GET_PLAYLISTID = "SELECT `playlistdata`.`playlist_id` FROM `playlistdata` WHERE `playlistdata`.`name` = ?";
-    private static final String UPDATE_USERPLAYLIST = "INSERT INTO `userplaylist` (`playlist_id`, `user_id`) VALUES (?, ?)";
+    private static final String ADD_TO_USERPLAYLIST = "INSERT INTO `userplaylist` (`playlist_id`, `user_id`) VALUES (?, ?)";
+    private static final String EDIT_PLAYLIST = "UPDATE `playlistdata` SET `name` = ? WHERE `playlistdata`.`playlist_id` = ?";
+    private static final String DELETE_PLAYLIST = "DELETE FROM `playlistdata` WHERE `playlistdata`.`playlist_id` = ?";
+    private static final String DELETE_FROM_USERPLAYLIST = "DELETE FROM `userplaylist` WHERE `playlist_id` = ? AND `user_id` = ?";
 
     public List<Playlist> getPlaylists(int id) {
 
@@ -80,13 +84,53 @@ public class PlaylistDAO extends DefaultDAO {
         return playlistID;
     }
 
-    public void updateUserPlaylist(int playlistID, int userID){
+    public void editUserPlaylist(UserPlaylistType type, int playlistID, int userID){
         try {
             connection = connector.getConnection();
-            pstmt = connection.prepareStatement(UPDATE_USERPLAYLIST);
+            switch(type){
+                case ADD:
+                    pstmt = connection.prepareStatement(ADD_TO_USERPLAYLIST);
+                    break;
+                case DELETE:
+                    pstmt = connection.prepareStatement(DELETE_FROM_USERPLAYLIST);
+                    break;
+            }
 
             pstmt.setInt(1, playlistID);
             pstmt.setInt(2, userID);
+
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, e.toString(), e);
+        } finally {
+            closeConnections();
+        }
+    }
+
+    public void editPlaylist(String name, int playlistID) {
+        try {
+            connection = connector.getConnection();
+            pstmt = connection.prepareStatement(EDIT_PLAYLIST);
+
+            pstmt.setString(1, name);
+            pstmt.setInt(2, playlistID);
+
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, e.toString(), e);
+        } finally {
+            closeConnections();
+        }
+    }
+
+    public void deletePlaylist(int playlistID){
+        try {
+            connection = connector.getConnection();
+            pstmt = connection.prepareStatement(DELETE_PLAYLIST);
+
+            pstmt.setInt(1, playlistID);
 
             pstmt.executeUpdate();
 

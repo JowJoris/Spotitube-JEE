@@ -40,6 +40,32 @@ public class PlaylistsController {
         }
     }
 
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/{id}")
+    public Response editPlaylist(PlaylistRequestDTO playlistRequestDTO, @PathParam("id") int playlistID, @QueryParam("token") String token) {
+        try {
+            PlaylistsResponseDTO playlistsResponseDTO = playlistService.editPlaylist(playlistRequestDTO.getName(), playlistID, userService.verifyToken(token));
+            return Response.ok(playlistsResponseDTO).build();
+        } catch (TokenException e) {
+            return Response.status(403).build();
+        }
+    }
+
+    @DELETE
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/{id}")
+    public Response deletePlaylist(@PathParam("id") int playlistID, @QueryParam("token") String token){
+        try {
+            PlaylistsResponseDTO playlistsResponseDTO = playlistService.deletePlaylist(playlistID, userService.verifyToken(token));
+            return Response.ok(playlistsResponseDTO).build();
+        } catch (TokenException e) {
+            return Response.status(403).build();
+        }
+    }
+
     @Inject
     public void setUserService(UserService userService) {
         this.userService = userService;
