@@ -41,11 +41,20 @@ public class PlaylistTracksControllerTest {
 
 
     @Test
-    public void tracksCoudlBeRetrieved() {
+    public void tracksCouldBeRetrieved() {
 
         Mockito.when(trackService.getTracks(PLAYLISTID)).thenReturn(playlistTracksResponseDTO);
 
         Response response = playlistTracksController.getTracks(PLAYLISTID, TOKEN);
         Assert.assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
+    }
+
+    @Test
+    public void trackCouldNotBeRetrieved(){
+
+        Mockito.when(trackService.getTracks(Mockito.anyInt())).thenThrow(TokenException.class);
+
+        Response response = playlistTracksController.getTracks(PLAYLISTID, TOKEN);
+        Assert.assertEquals(Response.Status.FORBIDDEN.getStatusCode(), response.getStatus());
     }
 }
