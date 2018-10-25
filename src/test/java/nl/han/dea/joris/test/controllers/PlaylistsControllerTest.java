@@ -1,7 +1,6 @@
 package nl.han.dea.joris.test.controllers;
 
 import nl.han.dea.joris.controllers.PlaylistsController;
-import nl.han.dea.joris.database.objects.Playlist;
 import nl.han.dea.joris.exceptions.TokenException;
 import nl.han.dea.joris.playlist.PlaylistRequestDTO;
 import nl.han.dea.joris.playlist.PlaylistsResponseDTO;
