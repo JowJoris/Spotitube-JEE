@@ -87,7 +87,7 @@ public class PlaylistsControllerTest {
 
         Mockito.when(playlistService.addPlaylist(USERID, PLAYLISTNAME)).thenReturn(playlistsResponseDTO);
 
-        Response response = playlistsController.getPlaylists(TOKEN);
+        Response response = playlistsController.addPlaylist(TOKEN, playlistRequestDTO);
         Assert.assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
 
     }
