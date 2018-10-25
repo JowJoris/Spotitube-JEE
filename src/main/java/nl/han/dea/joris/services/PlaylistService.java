@@ -6,6 +6,7 @@ import nl.han.dea.joris.database.objects.Playlist;
 import nl.han.dea.joris.database.objects.Track;
 import nl.han.dea.joris.playlist.PlaylistsResponseDTO;
 
+import javax.inject.Inject;
 import java.util.List;
 
 public class PlaylistService {
@@ -56,5 +57,10 @@ public class PlaylistService {
         playlistDAO.deletePlaylist(playlistID);
         playlistDAO.editUserPlaylist(UserPlaylistType.DELETE, playlistID, userID);
         return getPlaylists(userID);
+    }
+
+    @Inject
+    public void setPlaylistDAO(PlaylistDAO playlistDAO) {
+        this.playlistDAO = playlistDAO;
     }
 }
