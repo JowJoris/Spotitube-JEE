@@ -1,6 +1,7 @@
 package nl.han.dea.joris.test.controllers;
 
 import nl.han.dea.joris.controllers.PlaylistsController;
+import nl.han.dea.joris.database.objects.Playlist;
 import nl.han.dea.joris.exceptions.TokenException;
 import nl.han.dea.joris.playlist.PlaylistRequestDTO;
 import nl.han.dea.joris.playlist.PlaylistsResponseDTO;
@@ -36,7 +37,7 @@ public class PlaylistsControllerTest {
 
 
     @Before
-    public void setup(){
+    public void setup() {
 
         playlistsController = new PlaylistsController();
 
@@ -72,7 +73,7 @@ public class PlaylistsControllerTest {
     }
 
     @Test
-    public void playlistCouldBeRetrieved () {
+    public void playlistCouldBeRetrieved() {
 
         Mockito.when(playlistService.getPlaylists(USERID)).thenReturn(playlistsResponseDTO);
 
@@ -90,7 +91,7 @@ public class PlaylistsControllerTest {
     }
 
     @Test
-    public void playlistCouldBeAdded () {
+    public void playlistCouldBeAdded() {
 
         Mockito.when(playlistService.addPlaylist(USERID, PLAYLISTNAME)).thenReturn(playlistsResponseDTO);
 
@@ -100,7 +101,7 @@ public class PlaylistsControllerTest {
     }
 
     @Test
-    public void playlistCouldNotBeAdded(){
+    public void playlistCouldNotBeAdded() {
         Mockito.when(playlistService.addPlaylist(Mockito.anyInt(), Mockito.anyString())).thenThrow(TokenException.class);
 
         Response response = playlistsController.addPlaylist(TOKEN, playlistRequestDTO);
@@ -108,7 +109,7 @@ public class PlaylistsControllerTest {
     }
 
     @Test
-    public void playlistCouldBeEdited (){
+    public void playlistCouldBeEdited() {
         Mockito.when(playlistService.editPlaylist(PLAYLISTNAME, PLAYLISTID, USERID)).thenReturn(playlistsResponseDTO);
 
         Response response = playlistsController.editPlaylist(playlistRequestDTO, PLAYLISTID, TOKEN);
@@ -139,15 +140,4 @@ public class PlaylistsControllerTest {
 
         Assert.assertEquals(Response.Status.FORBIDDEN.getStatusCode(), response.getStatus());
     }
-
-    @Test
-    public void canGetLength(){
-
-        Mockito.when(playlistService.getLength(PLAYLISTS)).thenReturn(LENGTH);
-
-        int length = playlistService.getLength(PLAYLISTS);
-
-        Assert.assertEquals(LENGTH, length);
-
-    }
- }
+}

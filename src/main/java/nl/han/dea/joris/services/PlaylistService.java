@@ -13,11 +13,11 @@ public class PlaylistService {
 
     public PlaylistsResponseDTO getPlaylists(int userID) {
         PlaylistsResponseDTO playlistsResponseDTO = new PlaylistsResponseDTO();
-
         List<Playlist> playlists = playlistDAO.getPlaylists(userID);
-        checkOwner(userID, playlists);
-        playlistsResponseDTO.setLength(getLength(playlists));
-        playlistsResponseDTO.setPlaylists(playlists);
+        List<Playlist> checkedPlaylists;
+        checkedPlaylists = checkOwner(userID, playlists);
+        playlistsResponseDTO.setLength(getLength(checkedPlaylists));
+        playlistsResponseDTO.setPlaylists(checkedPlaylists);
         return playlistsResponseDTO;
 
     }
@@ -29,12 +29,13 @@ public class PlaylistService {
         return getPlaylists(userID);
     }
 
-    private void checkOwner(int userID, List<Playlist> playlists) {
+    public List<Playlist> checkOwner(int userID, List<Playlist> playlists) {
         for (Playlist p : playlists) {
             if (p.getOwnerId() == userID) {
                 p.setOwner(true);
             }
         }
+        return playlists;
     }
 
     public int getLength(List<Playlist> playlists) {
