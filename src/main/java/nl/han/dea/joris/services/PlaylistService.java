@@ -24,8 +24,7 @@ public class PlaylistService {
 
     public PlaylistsResponseDTO addPlaylist(int userID, String name) {
         playlistDAO.addPlaylist(userID, name);
-        int playlistID = playlistDAO.getPlaylistID(name);
-        playlistDAO.editUserPlaylist(UserPlaylistType.ADD, playlistID, userID);
+        playlistDAO.editUserPlaylist(UserPlaylistType.ADD, playlistDAO.getPlaylistID(name), userID);
         return getPlaylists(userID);
     }
 
