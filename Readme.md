@@ -2,6 +2,10 @@
 
 Mady by Joris Huinink in my 2nd year at [Hogeschool van Arnhem en Nijmegen](https://www.han.nl/) for the course DEA (**D**istributed **E**nterprise **A**pplications)
 
+## Description
+
+A webapplication simulating what Spotify and Youtube 
+
 ## Latest build
 |Status|[![Build Status](https://travis-ci.org/JowJoris/Spotitube-JEE.svg?)](https://travis-ci.org/JowJoris/Spotitube-JEE) |
 |------|-------|
@@ -14,8 +18,8 @@ Mady by Joris Huinink in my 2nd year at [Hogeschool van Arnhem en Nijmegen](http
  - JaxRS
  - REST
  - Mockito
- - A premade frontend provided by school: [Spotitube](http://ci.icaprojecten.nl/spotitube/)
+ - A premade frontend application provided by school: [Spotitube](http://ci.icaprojecten.nl/spotitube/)
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTUwNjI2ODA3M119
+eyJoaXN0b3J5IjpbLTExNDMxNDUwMV19
 -->
