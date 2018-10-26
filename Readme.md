@@ -2,7 +2,7 @@
 
 Mady by Joris Huinink in my 2nd year at [Hogeschool van Arnhem en Nijmegen](https://www.han.nl/) for the course DEA
  
- (**D**istributed **E**nterprise **A**pplications) at the study HBO-ICT
+ (**D**istributed **E**nterprise **A**pplications) at the study HBO-ICT.
 
 ## Description
 
@@ -30,5 +30,5 @@ A webapplication simulating what Spotify and Youtube together would become.
  - Sonarcloud
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTk4ODMxNDkzMSwxMzM4OTM4MDEwXX0=
+eyJoaXN0b3J5IjpbOTc2NDEwMzg1LDEzMzg5MzgwMTBdfQ==
 -->
