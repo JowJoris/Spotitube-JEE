@@ -29,7 +29,6 @@ public class TrackServiceTest {
         trackService = new TrackService();
         trackService.setTrackDAO(trackDAO);
 
-
         playlistTracksResponseDTO = new PlaylistTracksResponseDTO();
         playlistTracksResponseDTO.setTracks(TRACKS);
     }
