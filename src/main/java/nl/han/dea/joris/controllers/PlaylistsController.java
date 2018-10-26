@@ -71,6 +71,7 @@ public class PlaylistsController {
         this.userService = userService;
     }
 
+    @Inject
     public void setPlaylistService(PlaylistService playlistService) {
         this.playlistService = playlistService;
     }

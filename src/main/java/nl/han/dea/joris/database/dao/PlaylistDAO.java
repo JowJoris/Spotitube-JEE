@@ -18,10 +18,10 @@ public class PlaylistDAO extends DefaultDAO {
     private static final String DELETE_PLAYLIST = "DELETE FROM `playlistdata` WHERE `playlistdata`.`playlist_id` = ?";
     private static final String DELETE_FROM_USERPLAYLIST = "DELETE FROM `userplaylist` WHERE `playlist_id` = ? AND `user_id` = ?";
 
-    public List<Playlist> getPlaylists(int id) {
+    List<Playlist> playlists = new ArrayList<>();
+    TrackDAO trackDAO = new TrackDAO();
 
-        List<Playlist> playlists = new ArrayList<>();
-        TrackDAO trackDAO = new TrackDAO();
+    public List<Playlist> getPlaylists(int id) {
 
         try {
             connection = connector.getConnection();
