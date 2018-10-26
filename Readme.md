@@ -19,7 +19,12 @@ A webapplication simulating what Spotify and Youtube together would become.
  - REST
  - Mockito
  - A premade frontend application provided by school: [Spotitube](http://ci.icaprojecten.nl/spotitube/)
+ 
+  #### For testing
+ - Travis-CI
+ - Coveralls.io
+ - Sonarcloud
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTg1ODA3MzE3XX0=
+eyJoaXN0b3J5IjpbLTYwMTQxMDA0Ml19
 -->
