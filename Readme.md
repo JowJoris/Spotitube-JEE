@@ -1,10 +1,10 @@
 # Spotitube JEE
 
-Mady by Joris Huinink in my 2nd year at [Hogeschool van Arnhem en Nijmegen](https://www.han.nl/) for the course DEA (**D**istributed **E**nterprise **A**pplications)
+Mady by Joris Huinink in my 2nd year at [Hogeschool van Arnhem en Nijmegen](https://www.han.nl/) for the course DEA (**D**istributed **E**nterprise **A**pplications).
 
 ## Description
 
-A webapplication simulating what Spotify and Youtube together would be
+A webapplication simulating what Spotify and Youtube together would become.
 
 ## Latest build
 |Status|[![Build Status](https://travis-ci.org/JowJoris/Spotitube-JEE.svg?)](https://travis-ci.org/JowJoris/Spotitube-JEE) |
@@ -21,5 +21,5 @@ A webapplication simulating what Spotify and Youtube together would be
  - A premade frontend application provided by school: [Spotitube](http://ci.icaprojecten.nl/spotitube/)
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTA0MjY1NDM5N119
+eyJoaXN0b3J5IjpbMTg1ODA3MzE3XX0=
 -->
