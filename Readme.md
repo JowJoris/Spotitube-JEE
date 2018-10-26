@@ -1,6 +1,7 @@
 # Spotitube JEE
 
-Mady by Joris Huinink in my 2nd year at [Hogeschool van Arnhem en Nijmegen](https://www.han.nl/) for the course DEA (**D**istributed **E**nterprise **A**pplications).
+Mady by Joris Huinink in my 2nd year at [Hogeschool van Arnhem en Nijmegen](https://www.han.nl/) for the course DEA
+ (**D**istributed **E**nterprise **A**pplications) at the study HBO-ICT
 
 ## Description
 
@@ -28,5 +29,5 @@ A webapplication simulating what Spotify and Youtube together would become.
  - Sonarcloud
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTMzODkzODAxMF19
+eyJoaXN0b3J5IjpbMTI2NDk4MzA1MSwxMzM4OTM4MDEwXX0=
 -->
