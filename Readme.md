@@ -14,8 +14,8 @@ Mady by Joris Huinink in my 2nd year at [Hogeschool van Arnhem en Nijmegen](http
  - JaxRS
  - REST
  - Mockito
- - 
+ - A premade frontend provided by school: [Spotitube](http://ci.icaprojecten.nl/spotitube/)
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTMwNzA2MzAwOF19
+eyJoaXN0b3J5IjpbLTUwNjI2ODA3M119
 -->
