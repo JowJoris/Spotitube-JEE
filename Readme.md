@@ -4,6 +4,6 @@
 
 With excludes:
 
-[![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=nl.han.dea.joris%3ASpotitube-JEE&metric=coverage)]
+[![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=nl.han.dea.joris%3ASpotitube-JEE&metric=coverage)](https://sonarcloud.io/dashboard?id=nl.han.dea.joris%3ASpotitube-JEE)
 
 [![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=nl.han.dea.joris%3ASpotitube-JEE&metric=code_smells)](https://sonarcloud.io/dashboard?id=nl.han.dea.joris%3ASpotitube-JEE)
