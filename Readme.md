@@ -4,7 +4,7 @@ Mady by Joris Huinink in my 2nd year at [Hogeschool van Arnhem en Nijmegen](http
 
 ## Description
 
-A webapplication simulating what Spotify and Youtube 
+A webapplication simulating what Spotify and Youtube together would be
 
 ## Latest build
 |Status|[![Build Status](https://travis-ci.org/JowJoris/Spotitube-JEE.svg?)](https://travis-ci.org/JowJoris/Spotitube-JEE) |
@@ -21,5 +21,5 @@ A webapplication simulating what Spotify and Youtube
  - A premade frontend application provided by school: [Spotitube](http://ci.icaprojecten.nl/spotitube/)
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExNDMxNDUwMV19
+eyJoaXN0b3J5IjpbMTA0MjY1NDM5N119
 -->
