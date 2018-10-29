@@ -1,4 +1,4 @@
-package nl.han.dea.joris.database;
+package nl.han.dea.joris.database.connector;
 
 import nl.han.dea.joris.database.dao.DefaultDAO;
 

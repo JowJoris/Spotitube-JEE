@@ -1,6 +1,6 @@
 package nl.han.dea.joris.database.dao;
 
-import nl.han.dea.joris.database.MySQLDatabaseConnector;
+import nl.han.dea.joris.database.connector.MySQLDatabaseConnector;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

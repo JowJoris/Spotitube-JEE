@@ -1,4 +1,4 @@
-package nl.han.dea.joris.test.services;
+package nl.han.dea.joris.test.servicesTest;
 
 import nl.han.dea.joris.database.dao.PlaylistDAO;
 import nl.han.dea.joris.database.objects.Playlist;

@@ -1,4 +1,4 @@
-package nl.han.dea.joris.test.controllers;
+package nl.han.dea.joris.test.controllersTest;
 
 import nl.han.dea.joris.controllers.LoginController;
 import nl.han.dea.joris.exceptions.UnauthorizedException;
