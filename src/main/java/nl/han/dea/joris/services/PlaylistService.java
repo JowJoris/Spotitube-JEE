@@ -3,7 +3,6 @@ package nl.han.dea.joris.services;
 import nl.han.dea.joris.database.dao.PlaylistDAO;
 import nl.han.dea.joris.database.dao.UserPlaylistType;
 import nl.han.dea.joris.database.objects.Playlist;
-import nl.han.dea.joris.database.objects.Track;
 import nl.han.dea.joris.playlist.PlaylistsResponseDTO;
 
 import javax.inject.Inject;
@@ -15,9 +14,8 @@ public class PlaylistService {
     public PlaylistsResponseDTO getPlaylists(int userID) {
         PlaylistsResponseDTO playlistsResponseDTO = new PlaylistsResponseDTO();
         List<Playlist> playlists = playlistDAO.getPlaylists(userID);
-        List<Playlist> checkedPlaylists;
-        checkedPlaylists = checkOwner(userID, playlists);
-        playlistsResponseDTO.setLength(getLength(checkedPlaylists));
+        List<Playlist> checkedPlaylists = checkOwner(userID, playlists);
+        playlistsResponseDTO.setLength(getLength());
         playlistsResponseDTO.setPlaylists(checkedPlaylists);
         return playlistsResponseDTO;
 
@@ -29,7 +27,7 @@ public class PlaylistService {
         return getPlaylists(userID);
     }
 
-    public List<Playlist> checkOwner(int userID, List<Playlist> playlists) {
+    private List<Playlist> checkOwner(int userID, List<Playlist> playlists) {
         for (Playlist p : playlists) {
             if (p.getOwnerId() == userID) {
                 p.setOwner(true);
@@ -38,14 +36,8 @@ public class PlaylistService {
         return playlists;
     }
 
-    public int getLength(List<Playlist> playlists) {
-        int length = 0;
-        for (Playlist p : playlists) {
-            for (Track t : p.getTracks()) {
-                length += t.getDuration();
-            }
-        }
-        return length;
+    private int getLength() {
+        return playlistDAO.getLength();
     }
 
     public PlaylistsResponseDTO editPlaylist(String name, int playlistID, int userID) {

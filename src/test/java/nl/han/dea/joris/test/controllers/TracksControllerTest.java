@@ -1,10 +1,10 @@
 package nl.han.dea.joris.test.controllers;
 
-import nl.han.dea.joris.controllers.PlaylistTracksController;
+import nl.han.dea.joris.controllers.TracksController;
 import nl.han.dea.joris.exceptions.TokenException;
 import nl.han.dea.joris.services.TrackService;
 import nl.han.dea.joris.services.UserService;
-import nl.han.dea.joris.track.PlaylistTracksResponseDTO;
+import nl.han.dea.joris.track.TracksResponseDTO;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -16,9 +16,9 @@ import java.util.List;
 
 import static org.mockito.Mockito.mock;
 
-public class PlaylistTracksControllerTest {
-    private PlaylistTracksController playlistTracksController;
-    private PlaylistTracksResponseDTO playlistTracksResponseDTO;
+public class TracksControllerTest {
+    private TracksController tracksController;
+    private TracksResponseDTO tracksResponseDTO;
 
     private UserService userService = mock(UserService.class);
     private TrackService trackService = mock(TrackService.class);
@@ -30,12 +30,12 @@ public class PlaylistTracksControllerTest {
     @Before
     public void setup() {
 
-        playlistTracksController = new PlaylistTracksController();
-        playlistTracksController.setUserService(userService);
-        playlistTracksController.setTrackService(trackService);
+        tracksController = new TracksController();
+        tracksController.setUserService(userService);
+        tracksController.setTrackService(trackService);
 
-        playlistTracksResponseDTO = new PlaylistTracksResponseDTO();
-        playlistTracksResponseDTO.setTracks(TRACKS);
+        tracksResponseDTO = new TracksResponseDTO();
+        tracksResponseDTO.setTracks(TRACKS);
 
     }
 
@@ -43,9 +43,9 @@ public class PlaylistTracksControllerTest {
     @Test
     public void tracksCouldBeRetrieved() {
 
-        Mockito.when(trackService.getTracks(PLAYLISTID)).thenReturn(playlistTracksResponseDTO);
+        Mockito.when(trackService.getTracks(PLAYLISTID)).thenReturn(tracksResponseDTO);
 
-        Response response = playlistTracksController.getTracks(PLAYLISTID, TOKEN);
+        Response response = tracksController.getTracks(PLAYLISTID, TOKEN);
         Assert.assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
     }
 
@@ -54,7 +54,7 @@ public class PlaylistTracksControllerTest {
 
         Mockito.when(trackService.getTracks(Mockito.anyInt())).thenThrow(TokenException.class);
 
-        Response response = playlistTracksController.getTracks(PLAYLISTID, TOKEN);
+        Response response = tracksController.getTracks(PLAYLISTID, TOKEN);
         Assert.assertEquals(Response.Status.FORBIDDEN.getStatusCode(), response.getStatus());
     }
 }

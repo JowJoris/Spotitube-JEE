@@ -2,7 +2,7 @@ package nl.han.dea.joris.database.dao;
 
 import nl.han.dea.joris.database.objects.Playlist;
 
-import java.sql.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -17,9 +17,10 @@ public class PlaylistDAO extends DefaultDAO {
     private static final String EDIT_PLAYLIST = "UPDATE `playlistdata` SET `name` = ? WHERE `playlistdata`.`playlist_id` = ?";
     private static final String DELETE_PLAYLIST = "DELETE FROM `playlistdata` WHERE `playlistdata`.`playlist_id` = ?";
     private static final String DELETE_FROM_USERPLAYLIST = "DELETE FROM `userplaylist` WHERE `playlist_id` = ? AND `user_id` = ?";
+    private static final String TOTAL_LENGTH_OF_TRACKS = "SELECT SUM(`trackdata`.`duration`) FROM `trackdata` INNER JOIN `trackinplaylist` ON `trackdata`.`trackID` = `trackinplaylist`.`trackID`";
 
-    List<Playlist> playlists = new ArrayList<>();
-    TrackDAO trackDAO = new TrackDAO();
+    private List<Playlist> playlists = new ArrayList<>();
+    private TrackDAO trackDAO = new TrackDAO();
 
     public List<Playlist> getPlaylists(int id) {
 
@@ -137,5 +138,23 @@ public class PlaylistDAO extends DefaultDAO {
         } finally {
             closeConnections();
         }
+    }
+
+    public int getLength(){
+        int length = 0;
+        try{
+            connection = connector.getConnection();
+            pstmt = connection.prepareStatement(TOTAL_LENGTH_OF_TRACKS);
+            rs = pstmt.executeQuery();
+
+            if(rs.first()){
+                length = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            LOGGER.log(Level.SEVERE, e.toString(), e);
+        } finally {
+            closeConnections();
+        }
+        return length;
     }
 }

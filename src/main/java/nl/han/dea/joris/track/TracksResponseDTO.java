@@ -4,7 +4,7 @@ import nl.han.dea.joris.database.objects.Track;
 
 import java.util.List;
 
-public class PlaylistTracksResponseDTO {
+public class TracksResponseDTO {
 
     private List<Track> tracks;
 

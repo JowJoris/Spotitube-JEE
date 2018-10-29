@@ -7,10 +7,26 @@ public class Track {
     private String performer;
     private int duration;
     private String album;
-    private int playcount;
-    private String publicationdate;
+    private String publicationDate;
     private String description;
     private boolean offlineAvailable;
+    private int playcount;
+
+    public boolean isOfflineAvailable() {
+        return offlineAvailable;
+    }
+
+    public void setOfflineAvailable(boolean offlineAvailable) {
+        this.offlineAvailable = offlineAvailable;
+    }
+
+    public int getPlaycount() {
+        return playcount;
+    }
+
+    public void setPlaycount(int playcount) {
+        this.playcount = playcount;
+    }
 
     public int getId() {
         return id;
@@ -52,20 +68,13 @@ public class Track {
         this.album = album;
     }
 
-    public int getPlaycount() {
-        return playcount;
+
+    public String getPublicationDate() {
+        return publicationDate;
     }
 
-    public void setPlaycount(int playcount) {
-        this.playcount = playcount;
-    }
-
-    public String getPublicationdate() {
-        return publicationdate;
-    }
-
-    public void setPublicationdate(String publicationdate) {
-        this.publicationdate = publicationdate;
+    public void setPublicationDate(String publicationDate) {
+        this.publicationDate = publicationDate;
     }
 
     public String getDescription() {
@@ -76,11 +85,4 @@ public class Track {
         this.description = description;
     }
 
-    public boolean isOfflineAvailable() {
-        return offlineAvailable;
-    }
-
-    public void setOfflineAvailable(boolean offlineAvailable) {
-        this.offlineAvailable = offlineAvailable;
-    }
 }
